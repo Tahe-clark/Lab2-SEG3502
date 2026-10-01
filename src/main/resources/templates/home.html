@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculatrice</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Calculatrice</h1>
+
+<form th:action="@{/calculate}" method="get">
+    <label for="first">Premier nombre :</label>
+    <input id="first" name="first" th:value="${first}">
+
+    <label for="operation">Opération :</label>
+    <select id="operation" name="operation">
+        <option value="+" th:selected="${operation == '+'}">+</option>
+        <option value="-" th:selected="${operation == '-'}">−</option>
+        <option value="*" th:selected="${operation == '*'}">×</option>
+        <option value="/" th:selected="${operation == '/'}">÷</option>
+    </select>
+
+    <label for="second">Deuxième nombre :</label>
+    <input id="second" name="second" th:value="${second}">
+
+    <button type="submit">Calculer</button>
+</form>
+
+<p class="error" th:if="${error != ''}" th:text="${error}"></p>
+<p class="result" th:if="${result != ''}" th:text="|Résultat : ${result}|"></p>
+</body>
+</html>
